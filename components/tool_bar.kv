@@ -1,0 +1,45 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+
+
+<Toolbar@BoxLayout>:
+	size: self.size
+	pos: self.pos
+	# padding: [0, 0, 0, 0]
+
+	canvas.before:
+		Color:
+			rgba: (0,0,0, 0.03)
+		Rectangle:
+			size: self.size
+			pos: self.pos
+
+	MDIconButton:
+		size_hint: .15, 1
+		theme_text_color: "Custom"
+		text_color:  get_color_from_hex('#028C43')
+		icon: 'rotate-right'
+		user_font_size: "24sp"
+
+	MDTextField:
+		id: search_box
+		size_hint: .65, 1
+		hint_text: 'Search by name, iso3 or iso2'	
+		font_size: dp(16)
+		valign: 'center'
+		active_line: True
+		on_text_validate:
+			app._search()
+
+
+	MDIconButton:
+		size_hint: .15, 1
+
+		theme_text_color: "Custom"
+		text_color: get_color_from_hex('#028C43')
+		icon: 'magnify'
+		user_font_size: "24sp"
+
+		on_release:
+			app._search()
+
+

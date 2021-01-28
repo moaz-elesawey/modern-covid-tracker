@@ -1,0 +1,27 @@
+<PreventionCard@BoxLayout>:
+	orientation: 'vertical'
+	spacing: 5
+	size: self.size
+	pos: self.pos
+	text: ''
+	source: ''
+	back_color: (0,0,0,.03)
+
+	canvas.before:
+		Color:
+			rgba: self.back_color
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos 
+			radius: [dp(20)]
+	Image:
+		size_hint_y: .8
+		source: root.source
+		allow_stretch: True
+		width: int(root.size[0])
+
+	Label:
+		size_hint_y: .2
+		text: root.text
+		color: get_color_from_hex('#028C43')
+		font_size: dp(12)

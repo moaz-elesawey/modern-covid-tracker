@@ -1,0 +1,74 @@
+<InfoBox@BoxLayout>:
+	orientation: 'vertical'
+	size: self.size
+	pos: self.pos
+
+	icon: ''
+	text: ''
+	color: (0,0,0,1)
+	case_text: ''
+
+	canvas.before:
+		Color:
+			rgba: (1,1,1,1)
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos
+			radius: [dp(20)]
+
+	BoxLayout:
+		id: root_layout
+		size_hint_y: .3
+		padding: [dp(10), dp(0)]
+		icon: root.icon
+		text: root.text
+		color: root.color
+		case_text: root.case_text
+
+		MDIcon:
+			size_hint_x: .25
+			theme_text_color: 'Custom'
+			text_color: root.color
+			icon: root.icon
+
+		MDLabel:
+			size_hint_x: .75
+			text: root.text
+			font_size: '10sp'
+			bold: True
+
+	BoxLayout:
+		case_text: root.case_text
+		size_hint_y: .7
+		padding: dp(7), dp(0), dp(7), dp(15)
+		BoxLayout:
+			case_text: root.case_text
+			orientation: 'vertical'
+			size_hint_x: .7
+			
+			MDLabel:
+				size_hint_y: .8
+				text: root.case_text
+				bold: True
+				font_size: '17sp'
+				padding: [10, 0]
+
+
+			MDLabel:
+				size_hint_y: .2
+				text: 'Peaple'
+				bold: True
+				font_size: '9sp'
+				padding: [dp(10), 0]
+
+		# BoxLayout:
+		# 	id: graph_box
+		# 	size_hint_x: .3
+
+		Image:
+			size_hint_x: .3
+			source: 'assets/images/chart-5.png'
+			allow_stretch: True
+			size_hint_y: None
+			height: dp(40)
+			width: root.width

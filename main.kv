@@ -1,0 +1,123 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+#:include components/info_box.kv
+#:include components/tool_bar.kv
+#:include components/prevention_card.kv
+#:include components/advice_box.kv
+
+
+BoxLayout:
+	orientation: 'vertical'
+	country_name: country_name.__self__
+
+	Toolbar:
+		id: tool_bar
+		padding: [dp(5), dp(0), dp(5), dp(0)]
+		size_hint_y: .09
+		pos_hint: {'top': 1, 'center_x': .5}
+
+	BoxLayout:
+		size_hint_y: .06
+		padding: dp(15), dp(0),dp(15),dp(10)
+		orientation: 'vertical'
+		canvas.before:
+			Color:
+				rgba: (0,0,0,.02)
+			Rectangle:
+				size: self.size
+				pos: self.pos
+
+		BoxLayout:
+			canvas.before:
+				Color:
+					rgba: (1,1,1,1)
+				
+				RoundedRectangle:
+					size: self.size
+					pos: self.pos
+					radius: [dp(13)]
+
+			MDLabel:
+				id: country_name
+				text: 'World Wide'
+				bold: True
+				halign: 'center'
+				# padding: [dp(20), 0]
+
+	GridLayout:
+		size_hint_y: .37
+		pos_hint: {'top': .9, 'center_x': .5}
+		spacing: dp(15)
+		padding: dp(15), dp(0),dp(15),dp(15)
+		canvas.before:
+			Color:
+				rgba: (0,0,0,.02)
+			Rectangle:
+				size: self.size
+				pos: self.pos
+
+		rows: 2
+		cols: 2
+
+		InfoBox:
+			id: confirmed_box
+			icon: 'run'
+			text: 'Confirmed Cases'
+			color: get_color_from_hex("#F0C200")
+			case_text: '999.99K'
+		InfoBox:
+			id: deaths_box
+			icon: 'run'
+			text: 'Total Deaths'
+			color: get_color_from_hex("#F02213")
+			case_text: '634'
+		InfoBox:
+			id: recovered_box
+			icon: 'run'
+			text: 'Total Recovered'
+			color: get_color_from_hex("#028C43")
+			case_text: '114'
+		InfoBox:
+			id: new_cases_box
+			icon: 'run'
+			text: 'New Cases'
+			color: get_color_from_hex("#8D0FFA")
+			case_text: '34'
+		
+	BoxLayout:
+		padding: [0, dp(20), 0, 0]
+		orientation: 'vertical'
+		size_hint_y: .25
+		pos_hint: {'top': .52, 'center_x': .5}
+
+		MDLabel:
+			size_hint_y: .1
+			text: 'Preventions'
+			bold: True
+			halign: 'left'
+			padding: [dp(20), 0]
+
+		BoxLayout:
+			padding: [dp(20), dp(25), dp(20), dp(7)]
+			
+			spacing: dp(10)
+			size_hint_y: .9
+
+			PreventionCard:
+				back_color: (1,1,1,1)
+				text: 'Wash hands'
+				source: 'assets/images/wash-hands-icon.png'
+			PreventionCard:
+				back_color: (1,1,1,1)
+				text: 'Use Masks'
+				source: 'assets/images/mask-icon.png'
+			PreventionCard:
+				back_color: (1,1,1,1)
+				text: 'Clean Disinfect'
+				source: 'assets/images/wash-dishes-icon.png'
+			
+
+	BoxLayout:
+		size_hint_y: .23
+		padding: [dp(20), dp(15), dp(20), dp(30)]
+		pos_hint: {'top': .22, 'center_x': .5}
+		AdviceBox:

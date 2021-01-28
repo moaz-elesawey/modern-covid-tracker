@@ -1,0 +1,50 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+
+<AdviceBox@FloatLayout>:
+	size: self.size
+	pos: self.pos 
+
+	canvas.before:
+		Color:
+			rgba: get_color_from_hex('#018C14')
+		RoundedRectangle:
+			size: self.size
+			pos: self.pos 
+			radius: [20]
+
+
+	Label:
+		text: 'Dial 999 for \nMedical Help!'
+		font_size: '15sp'
+		size_hint_y: .3
+		bold: True
+		pos_hint: {'top': .9, 'center_x': .5}
+		color: get_color_from_hex('#48FF5F')
+
+	Label:
+		text: 'if any symptoms appears!'
+		font_size: '12sp'
+		size_hint_y: .3
+		bold: True
+		pos_hint: {'top': .59, 'center_x': .62}
+		color: get_color_from_hex('#38E009')
+
+
+	Image:
+		source: 'assets/images/corona.png'
+		size_hint_y: .4
+		allow_stretch: True
+		width: dp(40)
+		pos_hint: {'top': .93, 'center_x': .9}
+	Image:
+		source: 'assets/images/corona.png'
+		size_hint_y: .3
+		allow_stretch: True
+		width: dp(40)
+		pos_hint: {'top': .3, 'center_x': .5}
+	Image:
+		source: 'assets/images/nurse-icon.png'
+		size_hint_y: 1
+		allow_stretch: True
+		width: dp(120)
+		pos_hint: {'top': 1, 'center_x': .15}
