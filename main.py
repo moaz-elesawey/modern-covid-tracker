@@ -5,6 +5,7 @@ from db import DataBase
 from api import get_countries_data, URL
 
 import pickle
+from threading import Thread
 
 db = DataBase('db.sqlite3')
 
@@ -33,10 +34,15 @@ class MainApp(MDApp):
 		self.set_vals(0)
 		
 		# schedule the api call every 15 min
-		Clock.schedule_interval(lambda e: self.update_data, 60*10)
+		Clock.schedule_interval(lambda e: self.update_data(), 60*7)
 
-	def update_data(self):
+	def inner(self):
+		print('updated')
 		get_countries_data(URL)
+
+	def update_data(self) -> None:		
+		__p = Thread(target=self.inner)
+		__p.start()
 		self.set_vals(0)
 
 	def set_vals(self, idx: int) -> None:
@@ -57,9 +63,9 @@ class MainApp(MDApp):
 	@staticmethod
 	def format_number(number: int) -> str:
 		if number > 999_999:
-			return f'{round(number/1000_000, 2)}M'
+			return f'{round(number/1000_000, 3)}M'
 		elif number > 999:
-			return f'{round(number/1000, 2)}K'
+			return f'{round(number/1000, 3)}K'
 		else:
 			return str(number)
 

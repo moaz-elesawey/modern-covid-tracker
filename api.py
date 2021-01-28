@@ -8,7 +8,6 @@ URL = 'https://disease.sh/v3/covid-19/countries'
 
 def get_countries_data(url: str) -> list:
     try:
-        print('[INFO] api called')
         _res = requests.get(url)
         _res_all = requests.get('https://disease.sh/v3/covid-19/all')
         _all = _res_all.json()
@@ -35,12 +34,13 @@ def get_countries_data(url: str) -> list:
 
         with open('./local/_countries_data.pkl', 'wb') as f:
             pickle.dump(_modified_country_data, f)
+        print('[INFO] api called')
 
         return _modified_country_data
 
     except:
-        print('[INFO] load local...')
         with open('./local/_countries_data.pkl', 'rb') as f:
+            print('[INFO] load local...')
             return pickle.load(f)
 
 def _make_our_data(n: int) -> dict:
